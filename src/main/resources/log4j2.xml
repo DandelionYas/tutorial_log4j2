@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+
+        <!-- Console Appender -->
+        <Console name="SystemOut" target="SYSTEM_OUT">
+            <PatternLayout pattern="test: %d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+
+        <RollingFile name="TraceFileOut">
+            <FileName>./log/test-trace.log</FileName>
+            <FilePattern>./log/trace/test-trace-%d{yyyy-MM-dd-hh-mm}.log.zip</FilePattern>
+            <PatternLayout>
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="DebugFileOut">
+            <FileName>./log/test-debug.log</FileName>
+            <FilePattern>./log/debug/test-debug-%d{yyyy-MM-dd-hh-mm}.log.zip</FilePattern>
+            <PatternLayout>
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+
+        <!-- Rolling File Appender -->
+        <RollingFile name="InfoFileOut">
+            <FileName>./log/test-info.log</FileName>
+            <FilePattern>./log/info/test-info-%d{yyyy-MM-dd-hh-mm}.log.zip</FilePattern>
+            <PatternLayout>
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="ErrorFileOut">
+            <FileName>./log/test-error.log</FileName>
+            <FilePattern>./log/error/test-error-%d{yyyy-MM-dd-hh-mm}.log.zip</FilePattern>
+            <PatternLayout>
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <!--<Logger name="com.boraji.tutorial.log4j2" level="info">-->
+            <!--<AppenderRef ref="InfoFileOut" />-->
+            <!--<AppenderRef ref="SystemOut" />-->
+        <!--</Logger>-->
+        <Root level="ALL">
+            <AppenderRef ref="InfoFileOut" level="INFO"/>
+            <AppenderRef ref="SystemOut" level="INFO"/>
+            <AppenderRef ref="ErrorFileOut"  level="ERROR"/>
+            <AppenderRef ref="DebugFileOut"  level="DEBUG"/>
+            <AppenderRef ref="TraceFileOut"  level="TRACE"/>
+        </Root>
+    </Loggers>
+</Configuration>
